@@ -1,0 +1,6 @@
+{
+  "name": "Classic Retro Tetris",
+  "description": "클래식 레트로 스타일의 블록 퍼즐 테트리스 게임입니다. 7-bag 시스템, 하드/소프트 드롭, 홀드, 고스트 피스, 라인 클리어 효과 등을 지원합니다.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
