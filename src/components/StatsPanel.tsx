@@ -64,7 +64,7 @@ export const StatsPanel: React.FC<StatsPanelProps> = ({ stats, activeSkinName, o
         </div>
       </div>
 
-      {/* 15-Block Speed Meter */}
+      {/* 10-Block Speed Meter */}
       <div className="bg-zinc-900/90 border border-indigo-500/30 rounded-lg p-2 shadow-md flex flex-col gap-1.5">
         <div className="flex items-center justify-between text-[10px] font-mono">
           <span className="flex items-center gap-1 text-indigo-300 font-bold">
@@ -76,7 +76,7 @@ export const StatsPanel: React.FC<StatsPanelProps> = ({ stats, activeSkinName, o
           </span>
         </div>
 
-        {/* Progress bar to next 15 milestone */}
+        {/* Progress bar to next 10 milestone */}
         <div className="w-full bg-zinc-950 rounded-full h-1.5 overflow-hidden border border-zinc-800">
           <div
             className="bg-gradient-to-r from-indigo-500 via-purple-500 to-amber-400 h-full rounded-full transition-all duration-300"

@@ -117,19 +117,19 @@ export const POINTS = {
   HARD_DROP: 2,
 };
 
-export const BLOCKS_PER_SPEED_LEVEL = 15;
+export const BLOCKS_PER_SPEED_LEVEL = 10;
 
-// Drop interval in milliseconds per level (accelerates significantly every 15 blocks placed)
+// Drop interval in milliseconds per level (accelerates significantly every 10 blocks placed)
 export const getDropSpeed = (level: number): number => {
-  // Level 1 (0~14 blocks): 800ms - 편안한 기본 속도
-  // Level 2 (15~29 blocks): 620ms - 체감될 정도로 뚜렷하게 가속 (-180ms)
-  // Level 3 (30~44 blocks): 480ms - 확실히 빠른 속도감 (-140ms)
-  // Level 4 (45~59 blocks): 360ms - 긴장감 있는 빠른 속도 (-120ms)
-  // Level 5 (60~74 blocks): 260ms - 집중력이 필요한 고속 (-100ms)
-  // Level 6 (75~89 blocks): 180ms - 손이 매우 바빠지는 속도 (-80ms)
-  // Level 7 (90~104 blocks): 120ms - 초고속 모드 (-60ms)
-  // Level 8 (105~119 blocks): 80ms - 한계 스피드 (-40ms)
-  // Level 9+ (120+ blocks): 50ms - 최고 난도
+  // Level 1 (0~9 blocks): 800ms - 기본 속도
+  // Level 2 (10~19 blocks): 620ms - 체감 가속 (-180ms)
+  // Level 3 (20~29 blocks): 480ms - 빠른 속도감 (-140ms)
+  // Level 4 (30~39 blocks): 360ms - 긴장감 있는 빠른 속도 (-120ms)
+  // Level 5 (40~49 blocks): 260ms - 집중력이 필요한 고속 (-100ms)
+  // Level 6 (50~59 blocks): 180ms - 손이 바빠지는 속도 (-80ms)
+  // Level 7 (60~69 blocks): 120ms - 초고속 모드 (-60ms)
+  // Level 8 (70~79 blocks): 80ms - 한계 스피드 (-40ms)
+  // Level 9+ (80+ blocks): 50ms - 최고 난도
   const speedTable: Record<number, number> = {
     1: 800,
     2: 620,

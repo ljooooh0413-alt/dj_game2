@@ -49,6 +49,7 @@ export function useTetris() {
   const [slowTimeRemaining, setSlowTimeRemaining] = useState<number>(0);
   const [itemToast, setItemToast] = useState<{ message: string; color: string } | null>(null);
   const itemToastTimerRef = useRef<number | null>(null);
+  const lastScoreMilestoneRef = useRef<number>(0);
 
   const showItemToast = useCallback((message: string, color = 'text-amber-300') => {
     if (itemToastTimerRef.current !== null) {
@@ -57,18 +58,38 @@ export function useTetris() {
     setItemToast({ message, color });
     itemToastTimerRef.current = window.setTimeout(() => {
       setItemToast(null);
-    }, 2200);
+    }, 2400);
   }, []);
 
   const grantItem = useCallback((type: ItemType, toastMsg?: string) => {
     setItems((prev) => {
-      if (prev[type] >= 5) return prev;
+      if (prev[type] >= 9) return prev;
       return { ...prev, [type]: prev[type] + 1 };
     });
     sound.playItemGain();
     if (toastMsg) {
       showItemToast(toastMsg, 'text-emerald-300');
     }
+  }, [showItemToast]);
+
+  const grantRandomItem = useCallback((toastPrefix?: string) => {
+    const itemTypes: ItemType[] = ['bomb', 'slow', 'morphI', 'drill'];
+    const names: Record<ItemType, string> = {
+      bomb: '폭탄',
+      slow: '슬로우',
+      morphI: 'I-블록',
+      drill: '드릴',
+    };
+    const picked = itemTypes[Math.floor(Math.random() * itemTypes.length)];
+    setItems((prev) => ({
+      ...prev,
+      [picked]: Math.min(9, prev[picked] + 1),
+    }));
+    sound.playItemGain();
+    const msg = toastPrefix
+      ? `${toastPrefix} [${names[picked]}] 획득!`
+      : `🎁 랜덤 아이템 [${names[picked]}] +1 획득!`;
+    showItemToast(msg, 'text-emerald-300');
   }, [showItemToast]);
 
   // Keep references for animation frame / interval access
@@ -498,6 +519,23 @@ export function useTetris() {
     return () => clearInterval(timer);
   }, [slowTimeRemaining, status]);
 
+  // Grant a random item every 5,000 points
+  useEffect(() => {
+    if (status !== 'playing') return;
+    const currentScore = stats.score;
+    const currentMilestone = Math.floor(currentScore / 5000);
+    const prevMilestone = lastScoreMilestoneRef.current;
+
+    if (currentMilestone > prevMilestone) {
+      const times = currentMilestone - prevMilestone;
+      lastScoreMilestoneRef.current = currentMilestone;
+      for (let i = 0; i < times; i++) {
+        const milestoneScore = (prevMilestone + i + 1) * 5000;
+        grantRandomItem(`🎉 ${milestoneScore.toLocaleString()}점 달성 보너스!`);
+      }
+    }
+  }, [stats.score, status, grantRandomItem]);
+
   // Start new game
   const startGame = useCallback(() => {
     clearLockTimer();
@@ -514,6 +552,7 @@ export function useTetris() {
     setItems(INITIAL_ITEMS);
     setSlowTimeRemaining(0);
     setItemToast(null);
+    lastScoreMilestoneRef.current = 0;
 
     const firstPieceType = queue.shift()!;
     // Refill queue if needed

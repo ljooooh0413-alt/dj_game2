@@ -454,7 +454,7 @@ export default function App() {
                   <p>• <span className="text-cyan-400 font-bold">[2] ⏱️ 슬로우</span> : 10초간 낙하 속도를 대폭 감속시켜 위기 탈출</p>
                   <p>• <span className="text-indigo-400 font-bold">[3] 🟦 I-블록</span> : 현재 낙하 중인 블록을 일자 막대(I-미노)로 즉시 변환</p>
                   <p>• <span className="text-amber-400 font-bold">[4] 🧹 드릴</span> : 보드 밑바닥의 갇힌 구멍들을 메워 라인을 완성 및 정리</p>
-                  <p>• <span className="text-emerald-300">※ 획득 방법</span> : 게임 시작 시 기본 2개 지급, 4줄 테트리스 달성 및 6라인마다 추가 획득!</p>
+                  <p>• <span className="text-emerald-300">※ 획득 방법</span> : 게임 시작 시 기본 2개 지급, <strong className="text-amber-300">점수 5,000점마다 랜덤 아이템 +1개 지급</strong>, 4줄 테트리스 및 6라인마다 추가 획득!</p>
                 </div>
               </div>
               <div className="border-t border-zinc-800 pt-2">
@@ -464,7 +464,7 @@ export default function App() {
                   <p>• 2줄 제거: 300 × 레벨</p>
                   <p>• 3줄 제거: 500 × 레벨</p>
                   <p>• 4줄(테트리스): 800 × 레벨</p>
-                  <p>• <span className="text-amber-300 font-bold">속도 가속 규칙</span>: 블록이 15개 설치될 때마다 속도 레벨(Speed Lv)이 오르고 블록 낙하 속도가 점점 빨라집니다!</p>
+                  <p>• <span className="text-amber-300 font-bold">속도 가속 규칙</span>: 블록이 10개 설치될 때마다 속도 레벨(Speed Lv)이 오르고 블록 낙하 속도가 점점 빨라집니다!</p>
                   <p>• <span className="text-purple-300 font-bold">블록 스킨 보상</span>: 점수 10,000점마다 새로운 전용 블록 스킨이 해금됩니다!</p>
                 </div>
               </div>

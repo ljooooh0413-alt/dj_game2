@@ -97,8 +97,9 @@ export const ItemBar: React.FC<ItemBarProps> = ({
               <span>슬로우 {slowTimeRemaining}초</span>
             </span>
           ) : (
-            <span className="text-[9px] text-zinc-500 hidden sm:inline">
-              단축키 [1] ~ [4]
+            <span className="text-[9px] text-zinc-400">
+              <span className="text-amber-400/90 font-bold">5,000점</span>마다 랜덤 지급
+              <span className="text-zinc-600 hidden sm:inline"> • [1]~[4]</span>
             </span>
           )}
         </div>
